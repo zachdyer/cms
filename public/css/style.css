@@ -1,0 +1,30 @@
+/*!
+ * Start Bootstrap - 4 Col Portfolio (https://startbootstrap.com/template-overviews/4-col-portfolio)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-4-col-portfolio/blob/master/LICENSE)
+ */
+
+.portfolio-item {
+  margin-bottom: 30px;
+}
+
+.pagination {
+  margin-bottom: 30px;
+}
+
+
+.navbar {
+  padding-right: 15px;
+}
+
+.navbar-collapse {
+  padding-left: 15px;
+}
+
+.margin-top {
+  margin-top: 80px;
+}
+
+.navbar-brand img {
+  height: 50px;
+}

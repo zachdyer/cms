@@ -1,0 +1,25 @@
+main.col-md-9.ml-sm-auto.col-lg-10.pt-3.px-4(role='main')
+  .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pb-2.mb-3
+    h1.h2 Database
+    .btn-toolbar.mb-2.mb-md-0
+      .btn-group.mr-2
+        a.btn.btn-sm.btn-outline-secondary(href='/admin/?page=json') New JSON
+  .table-responsive
+    table.table.table-striped.table-hover
+      thead
+        tr
+          th Edit
+          th JSON
+          th Delete
+      tbody
+        each db in databases
+          tr
+            th(scope='row')
+              a(href='/admin/?page=json&name=' + db)
+                span(data-feather='edit')
+            td #{db}
+            td
+              a(href='/admin/?page=database&delete=' + db)
+                span(data-feather='trash')
+        else
+          p There are no files in your database

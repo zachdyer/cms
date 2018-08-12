@@ -1,0 +1,17 @@
+main.col-md-9.ml-sm-auto.col-lg-10.pt-3.px-4(role='main')
+  .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pb-2.mb-3
+    h1.h2
+    .btn-toolbar.mb-2.mb-md-0
+      .btn-group.mr-2
+        a.btn.btn-sm.btn-outline-secondary(href='/admin/?page=database') Back
+        a.btn.btn-sm.btn-outline-secondary(href='/admin/?page=json') New JSON
+  form(action='/admin/?page=json&name=' + name, method='post')
+    .form-group.row
+      label.col-sm-2.col-form-label(for='filename') File Name
+      .col-sm-10
+        input.form-control(type='text', placeholder='', name='filename', value=name)
+    .form-group.row
+      label.col-sm-2.col-form-label(for='json') JSON Data
+      .col-sm-10
+        textarea.form-control(name='json', placeholder='Enter JSON code for data import', rows='9') #{json}
+    button.btn.btn-primary(type='submit') Save JSON File

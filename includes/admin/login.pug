@@ -1,0 +1,13 @@
+.container.pt-5.pb-5
+  .card.mx-auto(style='max-width: 23rem;')
+    .card-header.text-white.bg-primary Login
+    .card-body
+      | #{message}
+      form(action="/admin/index.php?" + query, method="post")
+        .form-group
+          label(for='email') Email
+          input#email.form-control(type='text', placeholder='Email', name='email')
+        .form-group
+          label(for='password') Password
+          input#password.form-control(type='password', placeholder='Password', name='password')
+        button.btn.btn-primary(type='submit') Submit
