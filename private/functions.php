@@ -1,14 +1,4 @@
 <?php
-
-define("ROOTPATH",    "/var/www/zachdyer.com");
-define("DATABASE",    ROOTPATH . "/database");
-define("INCLUDES",    ROOTPATH . "/includes");
-define("PAGES",       ROOTPATH . "/includes/pages");
-define("ADMINPAGES",  ROOTPATH . "/includes/admin/pages");
-define("PUBLICPATH",  ROOTPATH . "/public");
-define("UPLOADS",     ROOTPATH . "/public/uploads");
-define("CLASSES",     ROOTPATH . "/classes");
-
 // Lesson: you can't have dashes in your object key because it won't work and you won't know why it doesn't work. 
 // However if you wrap it in curly braces and quotations it will work.
 // Lesson: Don't add a comma at the end of the list or it won't decode and you won't know why

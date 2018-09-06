@@ -1,5 +1,6 @@
 {
     "require": {
-        "pug-php/pug": "^3.2"
+        "pug-php/pug": "^3.2",
+        "klein/klein": "^2.1"
     }
 }

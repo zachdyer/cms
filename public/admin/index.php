@@ -1,17 +1,15 @@
 <?php // Admin Area
-require '../../vendor/autoload.php';
-require "../../functions.php";
-session_start();
-//If user clicks logout
-if(isset($_GET['logout'])) {
-  session_destroy();
-  header("Location: /admin");
-}
-echo render_view("/admin/header.pug", array(
+define("ROOTPATH", "/var/www/zachdyer.com");
+
+require(ROOTPATH . "/init.php");
+
+$pug = new Pug();
+
+echo $pug->render(INCLUDES . "/admin/header.pug", array(
   'company'         => getSettings()->company,
   'email'  => isset($_SESSION['email']) ? $_SESSION['email'] : false
 ));
-admin_content();
-echo render_view("/admin/footer.pug", array());
 
-?>
+echo $pug->render(VIEWS . "/admin/index.pug", array());
+
+echo $pug->render(INCLUDES . "/admin/footer.pug", array());

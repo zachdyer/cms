@@ -1,15 +1,3 @@
-<?php 
-require("/var/www/zachdyer.com/functions.php");
-session_start();
+<?php // Main file
 
-// Logout
-if(isset($_GET['logout'])) {
-  session_destroy();
-}
-
-//HTML output
-include_file("/header.php"); 
-public_content();
-include_file("/footer.php");  
-
-?>
+require "../private/init.php";

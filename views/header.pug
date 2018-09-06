@@ -1,0 +1,20 @@
+nav.navbar.navbar-expand-lg.text-mono
+  .container
+    a.navbar-brand(href='/')
+      // Display logo if turned on
+      if displaylogo
+        img(src='/uploads/' + logofile, alt=company)
+      else
+        | #{company}
+    button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarResponsive', aria-controls='navbarResponsive', aria-expanded='false', aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarResponsive.collapse.navbar-collapse
+      ul.navbar-nav.ml-auto
+        -var menu = { 'home': '/home', 'blog': '/blog', 'contact': '/contact' };
+        each val, key in menu
+          if selected === key
+            li(class="nav-item active")
+              a.nav-link(href=val)= key
+          else
+            li(class="nav-item")
+              a.nav-link(href=val)= key
