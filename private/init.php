@@ -1,6 +1,5 @@
 <?php
 // Directory Path Constants
-define("ROOTPATH", "/var/www/zachdyer.com");
 define("DATABASE",    ROOTPATH . "/database");
 define("INCLUDES",    ROOTPATH . "/includes");
 define("PAGES",       ROOTPATH . "/includes/pages");

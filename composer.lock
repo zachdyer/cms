@@ -566,16 +566,16 @@
         },
         {
             "name": "phug/lexer",
-            "version": "0.5.26",
+            "version": "0.5.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phug-php/lexer.git",
-                "reference": "137a2c2406df215036f8c805050c3b387e4a3f86"
+                "reference": "c9da2be310dab10747070243b3be3ab2e66623df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phug-php/lexer/zipball/137a2c2406df215036f8c805050c3b387e4a3f86",
-                "reference": "137a2c2406df215036f8c805050c3b387e4a3f86",
+                "url": "https://api.github.com/repos/phug-php/lexer/zipball/c9da2be310dab10747070243b3be3ab2e66623df",
+                "reference": "c9da2be310dab10747070243b3be3ab2e66623df",
                 "shasum": ""
             },
             "require": {
@@ -623,7 +623,7 @@
                 "template",
                 "views"
             ],
-            "time": "2018-07-06 13:49:56"
+            "time": "2018-08-17 13:39:39"
         },
         {
             "name": "phug/parser",
@@ -1211,7 +1211,7 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v3.4.14",
+            "version": "v3.4.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",

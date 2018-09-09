@@ -26,6 +26,9 @@ function createJSON($file, $data = null) {
     $data = array();
   }
   $data = json_encode($data, JSON_PRETTY_PRINT);
+  if(!file_exists(DATABASE)) {
+    mkdir(DATABASE);
+  }
   return file_put_contents (DATABASE . "/" . $file, $data);
 }
 
@@ -51,6 +54,13 @@ function getPassword() {
 }
 
 function getSettings() {
+  $settings_json = DATABASE."/settings.json";
+  if(!file_exists($settings_json)) {
+    //Create the settings json using the settings from the config file
+    global $settings;
+    saveJSON($settings, $settings_json);
+    return $settings;
+  }
   return getJSON("settings.json");
 }
 
@@ -311,16 +321,6 @@ function install() {
   header('Location: /admin');
 }
 
-function convertDriveURL($url) {
-  //example $url https://drive.google.com/file/d/1WwRLpT9pNwpAOnC2NqacadD5tbHC9hCv/view?usp=sharing
-  // Needs to be converted to https://drive.google.com/uc?export=view&id=1WwRLpT9pNwpAOnC2NqacadD5tbHC9hCv
-  
-  $url = str_replace("file/d/", "uc?export=view&id=", $url);
-  $url = str_replace("/view?usp=sharing", "", $url);
-  
-  return $url;
-}
-
 function alert($type, $message) {
   return "<div class=\"alert alert-$type\" role=\"alert\">" . $message . "</div>";
 }
@@ -396,76 +396,6 @@ function getSitesData() {
 
 function getSiteById($id) {
   return getDataById($id, "sites.json") ;
-}
-
-function saveSite($data) {
-  $www = "/var/www/";
-  $dir = $www . $data->domain;
-  $database_dir = $dir . "/database";
-  if(!file_exists($dir)) {
-    mkdir($dir);
-    mkdir($dir . "/public");
-    recurse_copy(ROOTPATH . "/public", $dir . "/public");
-    mkdir($dir . "/includes");
-    mkdir($dir . "/includes/admin");
-    mkdir($dir . "/includes/pages");
-    mkdir($dir . "/database");
-  }
-  
-  //Saving settings to site database
-  if(saveJSON($data, $database_dir . "/settings.json")) {
-    echo alert("success", "I saved the settings into the site database.");
-  } else {
-    echo alert("danger", "Could not save to " . $dir . "/database/settings.json");
-  }
-  
-  //Saving user to site database
-  $user_data = array(array("id" => uniqid(), "username" => $data->email, "password" => $data->password, "role" => "super-admin"));
-  if(saveJSON($user_data, $database_dir . "/users.json")) {
-    echo alert("success", "I saved the users into the site database.");
-  } else {
-    echo alert("danger", "Could not save to " . $dir . "/database/settings.json");
-  }
-  
-  //Save site data to master database
-  if(saveDataById($data->id, $data, "sites.json")) {
-    echo alert("success", "Data saved");
-  } else {
-    echo alert("danger", "I was unable to save the data.");
-  }
-
-  $sites_enabled = "server {
-    listen 80;
-    listen [::]:80;
-
-    root /var/www/".$data->domain."/public;
-    index index.php index.html;
-
-    server_name ".$data->domain."
-
-    location / {
-        try_files \$uri \$uri/ =404;
-    }
-
-    location ~ \.php$ {
-      include snippets/fastcgi-php.conf;
-      fastcgi_pass unix:/run/php/php7.0-fpm.sock;
-    }
-  }";
-
-  $sites_enabled_file = "/etc/nginx/sites-enabled/" . $data->domain;
-
-  if(file_put_contents($sites_enabled_file, $sites_enabled)) {
-    echo alert("success", "I saved sites-enabled config file.");
-  } else {
-    echo alert("danger", "I could not save the sites-enabled config file.");
-  }
-
-  if(exec("service nginx restart")) {
-    echo alert("success", "I restarted the server to register the sites-enabled file.");
-  } else {
-    echo alert("danger", "I was not able to restart the server.");
-  }
 }
 
 function install_copy($target_path, $file_path) {
