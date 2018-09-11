@@ -1,5 +1,3 @@
 database/
 vendor/
 private/config.php
-.vscode/
-.gitignore/

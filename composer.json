@@ -1,6 +1,7 @@
 {
     "require": {
         "pug-php/pug": "^3.2",
-        "klein/klein": "^2.1"
+        "klein/klein": "^2.1",
+        "erusev/parsedown": "^1.7"
     }
 }

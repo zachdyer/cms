@@ -53,8 +53,13 @@ function getPassword() {
   return $config->password;
 }
 
+// getSettings gets the data from the settings 
+// however if the file does not exist it uses the settings
+// in private/config.php->$settings
 function getSettings() {
   $settings_json = DATABASE."/settings.json";
+  // If the settings json file doesn't exist one is created using the settings
+  // from the private/config.php->$settings
   if(!file_exists($settings_json)) {
     //Create the settings json using the settings from the config file
     global $settings;

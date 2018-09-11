@@ -11,3 +11,7 @@ $this->respond('GET', '/?', function ($request, $response, $service, $app) {
     'experience' => date('Y') - 2008
   ));
 });
+
+$this->respond('GET', '/admin', function($request, $response, $service, $app) {
+  
+});
